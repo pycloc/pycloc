@@ -5,3 +5,7 @@ description = "Python wrapper for the cloc CLI tool"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

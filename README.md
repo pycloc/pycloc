@@ -15,7 +15,7 @@ This library requires you to have `cloc` installed on your system.
 ## Example
 
 ```python
-from cloc import CLOC
+from pycloc import CLOC
 import json
 
 if __name__ == "__main__":
