@@ -1,4 +1,4 @@
-from .utils.CLOCException import CLOCException
+from pycloc.utils import CLOCException
 import subprocess
 import os
 

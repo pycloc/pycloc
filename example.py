@@ -1,4 +1,4 @@
-from cloc import CLOC
+from pycloc import CLOC
 import json
 
 if __name__ == "__main__":
