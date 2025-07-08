@@ -1,16 +1,26 @@
 import json
+from pathlib import Path
 
 from pycloc import CLOC
 
-if __name__ == "__main__":
-    result = json.loads(
-        CLOC()
-        .add_flag("--by-file")
-        .add_flag("--json")
-        .add_option("--timeout", 30)
-        .set_working_directory("./")
-        .add_argument("b95e1a662d44ad70dda1744baf6cd91606fc6702")
-        .execute()
-    )
+cwd = Path.cwd()
 
-    print(json.dumps(result, indent=4))
+cloc = CLOC(
+    workdir=cwd,
+    timeout=30,
+    by_file=True,
+    json=True,
+    exclude_dir=(
+        ".idea",
+        ".venv",
+    ),
+)
+
+output = cloc(".")
+result = json.loads(output)
+pretty = json.dumps(
+    obj=result,
+    indent=4,
+)
+
+print(pretty)

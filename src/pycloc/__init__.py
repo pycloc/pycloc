@@ -1,3 +1,6 @@
-from pycloc.CLOC import CLOC
+import pycloc.command as command
+import pycloc.exceptions as exceptions
+from pycloc.command import *
+from pycloc.exceptions import *
 
-__all__ = ["CLOC"]
+__all__ = command.__all__ + exceptions.__all__
