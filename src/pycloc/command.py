@@ -1,18 +1,15 @@
-from logging import Logger
-from logging import getLogger as get_logger
 from os import PathLike
 from re import Pattern
 from re import compile as pattern
-from subprocess import CalledProcessError, run
-from typing import Iterable, List, Optional
+from subprocess import CalledProcessError
+from typing import List, Optional
 
 from pycloc._aliases import AnyPath, Flags, FlagValue
+from pycloc._subprocess import run
 from pycloc._utils import is_property
 from pycloc.exceptions import CLOCArgumentNameError, CLOCArgumentTypeError, CLOCCommandError
 
 __all__ = ("CLOC",)
-
-logger: Logger = get_logger(__package__)
 
 # language=pythonregexp
 validator: Pattern[str] = pattern(r"^[a-zA-Z0-9_-]+$")
@@ -82,45 +79,21 @@ class CLOC:
         executable = self.executable
         workdir = self.workdir or workdir
         flags = self._flags.copy() | flags
-        return self.__run(
-            executable=executable,
-            cwd=workdir,
-            arguments=[argument, *arguments],
-            flags=[
-                serialized
-                for name, value in flags.items()
-                if value is not None
-                for serialized in serialize(
-                    name=name,
-                    value=value,
-                )
-            ],
-        )
-
-    @staticmethod
-    def __run(
-        executable: AnyPath,
-        cwd: Optional[AnyPath],
-        arguments: Iterable[AnyPath],
-        flags: Iterable[str],
-    ) -> str:
-        args = [executable, *arguments, *flags]
-        logger.debug("cmd: %s", " ".join(args))
-        logger.debug("cwd: %s", cwd)
         try:
-            process = run(
-                args=args,
-                cwd=cwd,
-                capture_output=True,
-                check=True,
-                text=True,
+            return run(
+                executable=executable,
+                cwd=workdir,
+                arguments=[argument, *arguments],
+                flags=[
+                    serialized
+                    for name, value in flags.items()
+                    if value is not None
+                    for serialized in serialize(
+                        name=name,
+                        value=value,
+                    )
+                ],
             )
-
-            if stderr := process.stderr.strip():
-                for line in stderr.splitlines():
-                    logger.warning(line)
-
-            return process.stdout
         except CalledProcessError as ex:
             raise CLOCCommandError(
                 cmd=ex.cmd,
