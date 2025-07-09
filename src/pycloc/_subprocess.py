@@ -17,7 +17,8 @@ def run(
     cwd: Optional[AnyPath] = None,
 ) -> str:
     args = [executable, *arguments, *flags]
-    logger.debug("cmd: %s", " ".join(args))
+    cmd = " ".join(str(arg) for arg in args)
+    logger.debug("cmd: %s", cmd)
     logger.debug("cwd: %s", cwd)
 
     process = subprocess.run(
