@@ -7,6 +7,7 @@ from subprocess import CalledProcessError, run
 from typing import Iterable, List, Optional
 
 from pycloc._aliases import AnyPath, Flags, FlagValue
+from pycloc._utils import is_property
 from pycloc.exceptions import CLOCArgumentNameError, CLOCArgumentTypeError, CLOCCommandError
 
 __all__ = ("CLOC",)
@@ -66,17 +67,10 @@ class CLOC:
         return self._flags[name]
 
     def __setattr__(self, name: str, value: FlagValue):
-        if self.__is_property(name) or name.startswith("_"):
+        if is_property(self, name) or name.startswith("_"):
             super().__setattr__(name, value)
         else:
             self._flags[name] = value
-
-    @classmethod
-    def __is_property(cls, name: str) -> bool:
-        if not hasattr(cls, name):
-            return False
-        attribute = getattr(cls, name, None)
-        return isinstance(attribute, property)
 
     def __call__(
         self,
