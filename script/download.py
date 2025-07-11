@@ -8,6 +8,7 @@
 # ]
 # ///
 import json
+from configparser import ConfigParser
 from hashlib import sha256
 from os import chmod
 from os import environ as env
@@ -106,6 +107,28 @@ def main():
     Actual:   {actual}
     """).strip()
     chmod(path=script, mode=0o755)
+
+    config = ConfigParser(default_section="cloc")
+    config.set(
+        section="cloc",
+        option="url",
+        value="https://github.com/AlDanial/cloc",
+    )
+    config.set(
+        section="cloc",
+        option="version",
+        value=release.get("name"),
+    )
+    config.set(
+        section="cloc",
+        option="sha256",
+        value=actual,
+    )
+    with open(
+        file=resources / "cloc.ini",
+        mode="w",
+    ) as buffer:
+        config.write(buffer)
 
 
 if __name__ == "__main__":
