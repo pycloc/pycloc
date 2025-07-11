@@ -17,6 +17,12 @@ dev = [
     "ty>=0.0.1a14",
 ]
 
+[tool.hatch.build.targets.sdist]
+artifacts = [
+    "cloc.ini",
+    "cloc.pl",
+]
+
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["."]
