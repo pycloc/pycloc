@@ -35,6 +35,12 @@ addopts = ["--import-mode=importlib"]
 [tool.ruff]
 line-length = 120
 
+[tool.uv]
+cache-keys = [
+    { file = "pyproject.toml" },
+    { git = true },
+]
+
 [tool.uv-dynamic-versioning]
 bump = true
 style = "semver"
