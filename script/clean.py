@@ -1,0 +1,18 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#   "from-root",
+# ]
+# ///
+from shutil import rmtree
+
+from from_root import from_root
+
+resources = from_root("src", "pycloc", "resources")
+for name in ("cloc.pl", "cloc.ini"):
+    resource = resources / name
+    resource.unlink(missing_ok=True)
+
+dist = from_root("dist")
+rmtree(dist, ignore_errors=True)
