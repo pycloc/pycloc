@@ -2,6 +2,7 @@ from subprocess import CalledProcessError
 from typing import Optional
 
 from pycloc._aliases import AnyPath, Flags, FlagValue
+from pycloc._resources import script
 from pycloc._serialization import serialize
 from pycloc._subprocess import run
 from pycloc._utils import is_property
@@ -12,17 +13,8 @@ __all__ = ("CLOC",)
 
 class CLOC:
     def __init__(self, workdir: Optional[AnyPath] = None, **flags: FlagValue):
-        self._executable: AnyPath = "cloc"
         self._workdir: Optional[AnyPath] = workdir
         self._flags: Flags = flags
-
-    @property
-    def executable(self) -> AnyPath:
-        return self._executable
-
-    @executable.setter
-    def executable(self, value: AnyPath):
-        self._executable = value
 
     @property
     def workdir(self) -> Optional[AnyPath]:
@@ -51,7 +43,7 @@ class CLOC:
         workdir: Optional[AnyPath] = None,
         **flags: FlagValue,
     ) -> str:
-        executable = self.executable
+        executable = script()
         workdir = self.workdir or workdir
         flags = self._flags.copy() | flags
         try:
