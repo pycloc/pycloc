@@ -6,6 +6,7 @@ __all__ = (
     "CLOCArgumentTypeError",
     "CLOCArgumentError",
     "CLOCCommandError",
+    "CLOCDependencyError",
     "CLOCError",
 )
 
@@ -45,4 +46,8 @@ class CLOCArgumentTypeError(CLOCArgumentError, TypeError):
 
 
 class CLOCCommandError(CLOCError, CalledProcessError):
+    pass
+
+
+class CLOCDependencyError(CLOCError, OSError):
     pass

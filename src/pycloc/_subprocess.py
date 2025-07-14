@@ -1,6 +1,7 @@
 import subprocess
 from logging import Logger
 from logging import getLogger as get_logger
+from shutil import which
 from typing import Iterable, Optional, Tuple
 
 from pycloc._aliases import AnyPath
@@ -8,6 +9,10 @@ from pycloc._aliases import AnyPath
 empty: Tuple[str, ...] = ()
 
 logger: Logger = get_logger(__package__)
+
+
+def perl() -> Optional[AnyPath]:
+    return which(cmd="perl")
 
 
 def run(
