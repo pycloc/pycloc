@@ -4,9 +4,9 @@ from typing import Optional
 from pycloc._aliases import AnyPath, Flags, FlagValue
 from pycloc._resources import script
 from pycloc._serialization import serialize
-from pycloc._subprocess import run
+from pycloc._subprocess import perl, run
 from pycloc._utils import is_property
-from pycloc.exceptions import CLOCCommandError
+from pycloc.exceptions import CLOCCommandError, CLOCDependencyError
 
 __all__ = ("CLOC",)
 
@@ -43,6 +43,8 @@ class CLOC:
         workdir: Optional[AnyPath] = None,
         **flags: FlagValue,
     ) -> str:
+        if not perl():
+            raise CLOCDependencyError("Perl is not available!")
         executable = script()
         workdir = self.workdir or workdir
         flags = self._flags.copy() | flags
