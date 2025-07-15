@@ -2,6 +2,7 @@ from subprocess import CalledProcessError
 from typing import Optional
 
 from pycloc._aliases import AnyPath, Flags, FlagValue
+from pycloc._properties import properties
 from pycloc._resources import script
 from pycloc._serialization import serialize
 from pycloc._subprocess import perl, run
@@ -12,6 +13,8 @@ __all__ = ("CLOC",)
 
 
 class CLOC:
+    __version__ = properties.version
+
     def __init__(self, workdir: Optional[AnyPath] = None, **flags: FlagValue):
         self._workdir: Optional[AnyPath] = workdir
         self._flags: Flags = flags
