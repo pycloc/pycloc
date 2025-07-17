@@ -16,6 +16,8 @@ from pycloc.command import serialize
         param(3, ["--name=3"], id="integer"),
         param(3.14, ["--name=3.14"], id="float"),
         param("value", ["--name=value"], id="string"),
+        param(b"value", ["--name=value"], id="bytes"),
+        param(bytearray(b"value"), ["--name=value"], id="bytearray"),
         param(("a", "b", "c"), ["--name=a,b,c"], id="tuple"),
         param([1, 2, 3], ["--name=1", "--name=2", "--name=3"], id="list"),
         param({1, 2, 3}, ["--name=1", "--name=2", "--name=3"], id="set"),
@@ -30,6 +32,8 @@ def test_serialization(value: Any, expected: List[str]):
 @mark.parametrize(
     "value,expected",
     [
+        param(bytearray(), [], id="bytearray"),
+        param(bytes(), [], id="bytes"),
         param(tuple(), [], id="tuple"),
         param(list(), [], id="list"),
         param(set(), [], id="set"),
