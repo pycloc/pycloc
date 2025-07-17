@@ -19,11 +19,12 @@ def serialize(name: str, value: FlagValue) -> List[str]:
             return []
         case bool():
             return [flag] if value else []
-        case float() | int() | str() | PathLike():
+        case float() | int() | PathLike():
             return [f"{flag}={value}"]
+        case str():
+            return [f"{flag}={value}"] if value else []
         case tuple():
-            values = ",".join(map(str, value))
-            return [f"{flag}={values}"]
+            return [f"{flag}={values}"] if (values := ",".join(map(str, value))) else []
         case list() | set():
             return sum([[f"{flag}={value}"] for value in value], [])
         case _:
