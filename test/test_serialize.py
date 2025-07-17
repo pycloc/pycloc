@@ -28,6 +28,21 @@ def test_serialization(value: Any, expected: List[str]):
 
 
 @mark.parametrize(
+    "value,expected",
+    [
+        param(tuple(), [], id="tuple"),
+        param(list(), [], id="list"),
+        param(set(), [], id="set"),
+        param(0, ["--name=0"], id="integer"),
+        param(0.0, ["--name=0.0"], id="float"),
+    ],
+)
+def test_serialization_empty(value: Any, expected: List[str]):
+    actual = serialize(name="name", value=value)
+    assert expected == actual
+
+
+@mark.parametrize(
     "name",
     [
         param("", id="empty"),
