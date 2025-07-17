@@ -23,6 +23,8 @@ def serialize(name: str, value: FlagValue) -> List[str]:
             return [f"{flag}={value}"]
         case str():
             return [f"{flag}={value}"] if value else []
+        case bytearray() | bytes():
+            return [f"{flag}={decoded}"] if (decoded := value.decode()) else []
         case tuple():
             return [f"{flag}={values}"] if (values := ",".join(map(str, value))) else []
         case list() | set():
