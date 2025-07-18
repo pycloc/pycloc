@@ -44,6 +44,8 @@ class CLOC:
         argument: AnyPath,
         *arguments: AnyPath,
         workdir: Optional[AnyPath] = None,
+        encoding: Optional[str] = None,
+        errors: Optional[str] = None,
         **flags: FlagValue,
     ) -> str:
         if not perl():
@@ -56,6 +58,8 @@ class CLOC:
                 executable=executable,
                 cwd=workdir,
                 arguments=[argument, *arguments],
+                encoding=encoding,
+                errors=errors,
                 flags=[
                     serialized
                     for name, value in flags.items()
@@ -63,6 +67,8 @@ class CLOC:
                     for serialized in serialize(
                         name=name,
                         value=value,
+                        encoding=encoding,
+                        errors=errors,
                     )
                 ],
             )

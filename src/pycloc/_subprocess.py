@@ -20,6 +20,8 @@ def run(
     arguments: Iterable[AnyPath] = empty,
     flags: Iterable[str] = empty,
     cwd: Optional[AnyPath] = None,
+    encoding: Optional[str] = None,
+    errors: Optional[str] = None,
 ) -> str:
     args = [executable, *arguments, *flags]
     cmd = " ".join(str(arg) for arg in args)
@@ -29,6 +31,8 @@ def run(
     process = subprocess.run(
         args=args,
         cwd=cwd,
+        encoding=encoding,
+        errors=errors,
         capture_output=True,
         check=True,
         text=True,
