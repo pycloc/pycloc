@@ -1,7 +1,7 @@
 from os import PathLike
 from re import Pattern
 from re import compile as pattern
-from typing import List
+from typing import List, Optional
 
 from pycloc._aliases import FlagValue
 from pycloc.exceptions import CLOCArgumentNameError, CLOCArgumentTypeError
@@ -10,7 +10,12 @@ from pycloc.exceptions import CLOCArgumentNameError, CLOCArgumentTypeError
 validator: Pattern[str] = pattern(r"^[a-zA-Z0-9_-]+$")
 
 
-def serialize(name: str, value: FlagValue) -> List[str]:
+def serialize(
+    name: str,
+    value: FlagValue,
+    encoding: Optional[str] = None,
+    errors: Optional[str] = None,
+) -> List[str]:
     if not validator.match(name):
         raise CLOCArgumentNameError(name)
     flag = "--" + name.replace("_", "-")
@@ -24,7 +29,11 @@ def serialize(name: str, value: FlagValue) -> List[str]:
         case str():
             return [f"{flag}={value}"] if value else []
         case bytearray() | bytes():
-            return [f"{flag}={decoded}"] if (decoded := value.decode()) else []
+            decoded = value.decode(
+                encoding=encoding if encoding else "utf-8",
+                errors=errors if errors else "strict",
+            )
+            return [f"{flag}={decoded}"] if decoded else []
         case tuple():
             return [f"{flag}={values}"] if (values := ",".join(map(str, value))) else []
         case list() | set():
