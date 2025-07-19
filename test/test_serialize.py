@@ -1,49 +1,52 @@
 from pathlib import Path
-from typing import Any, List
+from typing import Any, List, TypeVar
 
 from pytest import mark, param, raises
 
 # noinspection PyProtectedMember
 from pycloc.command import serialize
 
+T = TypeVar("T")
+
 
 @mark.parametrize(
     "value,expected",
     [
         param(None, [], id="none"),
-        param(False, [], id="false"),
-        param(True, ["--name"], id="true"),
-        param(3, ["--name=3"], id="integer"),
-        param(3.14, ["--name=3.14"], id="float"),
-        param("value", ["--name=value"], id="string"),
-        param(b"value", ["--name=value"], id="bytes"),
-        param(bytearray(b"value"), ["--name=value"], id="bytearray"),
-        param(("a", "b", "c"), ["--name=a,b,c"], id="tuple"),
-        param([1, 2, 3], ["--name=1", "--name=2", "--name=3"], id="list"),
-        param({1, 2, 3}, ["--name=1", "--name=2", "--name=3"], id="set"),
-        param(Path("/path/to/file"), ["--name=/path/to/file"], id="path"),
+        param(False, [], id="bool,false"),
+        param(True, ["--name"], id="bool,true"),
+        param(0, ["--name=0"], id="int,zero"),
+        param(1, ["--name=1"], id="int,positive"),
+        param(-1, ["--name=-1"], id="int,negative"),
+        param(0.0, ["--name=0.0"], id="float,zero"),
+        param(1.618, ["--name=1.618"], id="float,positive"),
+        param(-1.618, ["--name=-1.618"], id="float,negative"),
+        param("", [], id="str,empty"),
+        param("value", ["--name=value"], id="str,single"),
+        param(b"", [], id="bytes,empty"),
+        param(b"value", ["--name=value"], id="bytes,single"),
+        param(bytearray(), [], id="bytearray,empty"),
+        param(bytearray([118, 97, 108, 117, 101]), ["--name=value"], id="bytearray,single"),
+        param(tuple(), [], id="tuple,empty"),
+        param((1,), ["--name=1"], id="tuple,single"),
+        param((1, 2, 3), ["--name=1,2,3"], id="tuple,multiple"),
+        param(set(), [], id="set,empty"),
+        param({1}, ["--name=1"], id="set,single"),
+        param({1, 2, 3}, ["--name=1", "--name=2", "--name=3"], id="set,multiple"),
+        param(list(), [], id="list,empty"),
+        param([1], ["--name=1"], id="list,single"),
+        param([1, 2, 3], ["--name=1", "--name=2", "--name=3"], id="list,multiple"),
+        param(Path(), ["--name=."], id="path,cwd"),
+        param(Path("/"), ["--name=/"], id="path,root"),
+        param(Path("/bin"), ["--name=/bin"], id="path,single"),
+        param(Path("/var/log"), ["--name=/var/log"], id="path,multiple"),
     ],
 )
-def test_serialization(value: Any, expected: List[str]):
-    actual = serialize(name="name", value=value)
-    assert expected == actual
-
-
-@mark.parametrize(
-    "value,expected",
-    [
-        param(bytearray(), [], id="bytearray"),
-        param(bytes(), [], id="bytes"),
-        param(tuple(), [], id="tuple"),
-        param(list(), [], id="list"),
-        param(set(), [], id="set"),
-        param(0, ["--name=0"], id="integer"),
-        param(0.0, ["--name=0.0"], id="float"),
-    ],
-)
-def test_serialization_empty(value: Any, expected: List[str]):
-    actual = serialize(name="name", value=value)
-    assert expected == actual
+def test_serialization(value: T, expected: List[str]):
+    assert expected == serialize(
+        name="name",
+        value=value,
+    )
 
 
 @mark.parametrize(
