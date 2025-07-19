@@ -54,7 +54,9 @@ def test_warnings(mocker: MockFixture):
     actual = run(
         executable="cloc",
         arguments=["1"],
-        flags=["--json"],
+        flags=[
+            ("json", True),
+        ],
     )
     subprocess.assert_called_once()
     assert expected == actual
