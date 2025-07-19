@@ -5,7 +5,7 @@ from pytest import raises
 from pytest_mock import MockFixture
 
 # noinspection PyProtectedMember
-from pycloc.command import run
+from pycloc._subprocess import run
 
 
 def test_no_output():

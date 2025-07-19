@@ -4,7 +4,7 @@ from typing import Any, List, TypeVar
 from pytest import mark, param, raises
 
 # noinspection PyProtectedMember
-from pycloc.command import serialize
+from pycloc._serialization import serialize
 
 T = TypeVar("T")
 

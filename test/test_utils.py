@@ -1,7 +1,7 @@
 from pytest import fixture, mark, param
 
 # noinspection PyProtectedMember
-from pycloc.command import is_property
+from pycloc._utils import is_property
 
 
 class Example:
