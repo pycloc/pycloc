@@ -1,6 +1,7 @@
 from os import PathLike
 from re import Pattern
 from re import compile as pattern
+from shlex import quote
 from typing import List, Optional
 
 from pycloc._aliases import FlagValue
@@ -25,18 +26,24 @@ def serialize(
         case bool():
             return [flag] if value else []
         case float() | int() | PathLike():
-            return [f"{flag}={value}"]
+            serialized = str(value)
+            quoted = quote(serialized)
+            return [f"{flag}={quoted}"]
         case str():
-            return [f"{flag}={value}"] if value else []
+            quoted = quote(value)
+            return [f"{flag}={quoted}"]
         case bytearray() | bytes():
             decoded = value.decode(
                 encoding=encoding if encoding else "utf-8",
                 errors=errors if errors else "strict",
             )
-            return [f"{flag}={decoded}"] if decoded else []
+            quoted = quote(decoded)
+            return [f"{flag}={quoted}"]
         case tuple():
-            return [f"{flag}={values}"] if (values := ",".join(map(str, value))) else []
+            values = ",".join(map(str, value))
+            quoted = quote(values)
+            return [f"{flag}={quoted}"]
         case list() | set():
-            return sum([[f"{flag}={value}"] for value in value], [])
+            return [f"{flag}={quote(str(value))}" for value in value]
         case _:
             raise CLOCArgumentTypeError(value)
