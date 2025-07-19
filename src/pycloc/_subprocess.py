@@ -4,7 +4,8 @@ from logging import getLogger as get_logger
 from shutil import which
 from typing import Iterable, Optional, Tuple
 
-from pycloc._aliases import AnyPath
+from pycloc._aliases import AnyPath, Flag
+from pycloc._serialization import serialize
 
 empty: Tuple[str, ...] = ()
 
@@ -18,12 +19,23 @@ def perl() -> Optional[AnyPath]:
 def run(
     executable: AnyPath,
     arguments: Iterable[AnyPath] = empty,
-    flags: Iterable[str] = empty,
+    flags: Iterable[Flag] = empty,
     cwd: Optional[AnyPath] = None,
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
 ) -> str:
-    args = [executable, *arguments, *flags]
+    args = [executable, *arguments] + [
+        serialized
+        for name, value in flags
+        if value is not None
+        for serialized in serialize(
+            name=name,
+            value=value,
+            encoding=encoding,
+            errors=errors,
+        )
+    ]
+
     cmd = " ".join(str(arg) for arg in args)
     logger.debug("cmd: %s", cmd)
     logger.debug("cwd: %s", cwd)
