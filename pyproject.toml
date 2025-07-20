@@ -13,6 +13,7 @@ dev = [
     "pytest-mock>=3.14.1",
     "requests>=2.32.4",
     "ruff>=0.12.2",
+    "rust-just>=1.42.3",
     "tqdm>=4.67.1",
     "ty>=0.0.1a14",
 ]
