@@ -33,7 +33,7 @@ sync:
     uv sync --all-packages --all-groups --all-extras
 
 test:
-    uv run pytest --verbose
+    uv run pytest -vv
 
 typecheck:
     uv run ty check .
