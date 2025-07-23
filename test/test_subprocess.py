@@ -1,7 +1,8 @@
+from logging import WARNING
 from textwrap import dedent
 from typing import cast
 
-from pytest import raises
+from pytest import LogCaptureFixture, raises
 from pytest_mock import MockFixture
 
 # noinspection PyProtectedMember
@@ -33,35 +34,37 @@ def test_not_found():
     assert ex.strerror == "No such file or directory"
 
 
-def test_warnings(mocker: MockFixture):
+def test_warnings(
+    caplog: LogCaptureFixture,
+    mocker: MockFixture,
+):
     expected = "{}"
     warnings = dedent("""
     1 error:
     Unable to read: 1
     """)
-    mock_result = mocker.Mock()
-    mock_result.stdout = expected
-    mock_result.stderr = warnings
+    result = mocker.Mock()
+    result.stdout = expected
+    result.stderr = warnings
 
     subprocess = mocker.patch(
         target="subprocess.run",
-        return_value=mock_result,
+        return_value=result,
     )
-    logger = mocker.patch(
-        target="pycloc._subprocess.logger",
-    )
-
-    actual = run(
-        executable="cloc",
-        arguments=["1"],
-        flags=[
-            ("json", True),
-        ],
-    )
+    with caplog.at_level(
+        level=WARNING,
+        logger="pycloc",
+    ):
+        actual = run(
+            executable="cloc",
+            arguments=["1"],
+            flags=[
+                ("json", True),
+            ],
+        )
     subprocess.assert_called_once()
     assert expected == actual
 
     expected = [warning for warning in warnings.splitlines() if warning]
-    actual = [argument for call in logger.warning.call_args_list for argument in call.args]
-    assert logger.warning.call_count == 2
+    actual = [message for message in caplog.messages]
     assert expected == actual
