@@ -41,8 +41,10 @@ fallback-version = "0.0.0"
 source = "uv-dynamic-versioning"
 
 [tool.pytest.ini_options]
-pythonpath = ["."]
-testpaths = ["."]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+pythonpath = ["src"]
+testpaths = ["test"]
 addopts = [
     "--cov=src",
     "--cov-report=html",
