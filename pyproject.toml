@@ -35,9 +35,9 @@ test = [
     "pytest-mock>=3.14.1",
 ]
 tool = [
-    "ruff>=0.12.4",
-    "rust-just>=1.42.3",
-    "ty>=0.0.1a15",
+    "ruff>=0.12.5",
+    "rust-just>=1.42.4",
+    "ty>=0.0.1a16",
 ]
 script = [
     "from-root>=1.3.0",
