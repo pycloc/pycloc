@@ -20,6 +20,9 @@ download:
 format: lint
     uv run ruff format
 
+hooks:
+    uv run pre-commit run --all-files
+
 lint:
     uv run ruff check --fix
 
