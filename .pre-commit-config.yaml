@@ -15,3 +15,12 @@ repos:
       files: ^test/.*\.py$
     - id: trailing-whitespace
       args: [ "--markdown-linebreak-ext=md" ]
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.12.5
+  hooks:
+    - id: ruff-check
+      args: [ "--config", "pyproject.toml", "--exit-non-zero-on-fix", "--fix" ]
+      files: \.py$
+    - id: ruff-format
+      args: [ "--config", "pyproject.toml" ]
+      files: \.py$
