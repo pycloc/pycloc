@@ -21,7 +21,7 @@ format: lint
     uv run ruff format
 
 lint:
-    uv run ruff check --select I --fix
+    uv run ruff check --extend-select I --fix
 
 lock:
     uv lock
