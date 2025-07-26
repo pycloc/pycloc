@@ -35,6 +35,7 @@ test = [
     "pytest-mock>=3.14.1",
 ]
 tool = [
+    "pre-commit>=4.2.0",
     "ruff>=0.12.5",
     "rust-just>=1.42.4",
     "ty>=0.0.1a16",
