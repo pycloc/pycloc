@@ -2,47 +2,80 @@
 
 set shell := ["/bin/bash", "-c"]
 
-alias check := typecheck
-alias demo := demonstrate
+alias build := build-package
+alias check := run-type-checker
+alias clean := clean-generated-files
+alias demo := run-example
+alias download := download-cloc-script
+alias export := export-requirements
+alias format := run-formatter
+alias hooks := run-hooks
+alias lint := run-linter
+alias lock := check-lockfile
+alias python := install-python
+alias setup := set-up-project
+alias sync := sync-dependencies
+alias test := run-tests
+alias upgrade := upgrade-lockfile
+alias venv := create-virtual-environment
 
-build: download
+default:
+    just --list
+
+build-package: download-cloc-script
     uv build
 
-clean:
-    script/clean.py
+check-lockfile:
+    uv lock --check
 
-demonstrate:
-    uv run example.py
+clean-generated-files:
+    uv run script/clean.py
 
-download:
-    script/download.py
+create-virtual-environment:
+    uv venv --seed --allow-existing
 
-format: lint
-    uv run ruff format
+download-cloc-script:
+    uv run script/download.py
 
-hooks:
-    uv run pre-commit run --all-files
+export-requirements:
+    uv export --format requirements-txt \
+              --output-file requirements-dev.txt \
+              --all-extras \
+              --all-groups \
+              --all-packages \
+              --no-annotate \
+              --no-hashes \
+              --no-header \
+              --quiet
 
-lint:
-    uv run ruff check --fix
+install-hooks:
+    uv run pre-commit install
 
-lock:
-    uv lock
-
-pytion:
+install-python:
     uv python install
 
-sync:
-    uv sync --all-packages --all-groups --all-extras
+run-example:
+    uv run example.py
 
-test:
+run-formatter: run-linter
+    uv run ruff format
+
+run-hooks:
+    uv run pre-commit run --all-files
+
+run-linter:
+    uv run ruff check --fix
+
+run-tests:
     uv run pytest -vv
 
-typecheck:
-    uv run ty check .
+run-type-checker:
+    uv run ty check
 
-upgrade:
+set-up-project: install-python create-virtual-environment sync-dependencies install-hooks
+
+sync-dependencies:
+    uv sync --all-packages --all-groups --all-extras
+
+upgrade-lockfile:
     uv lock --upgrade
-
-venv:
-    uv venv --seed --allow-existing
