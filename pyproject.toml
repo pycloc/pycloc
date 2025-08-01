@@ -23,6 +23,7 @@ classifiers = [
 
 [dependency-groups]
 dev = [
+    { include-group = "docs" },
     { include-group = "test" },
     { include-group = "tool" },
     { include-group = "script" },
@@ -43,6 +44,19 @@ script = [
     "from-root>=1.3.0",
     "requests>=2.32.4",
     "tqdm>=4.67.1",
+]
+docs = [
+    "mkdocs>=1.6.1",
+    "mkdocs-autoapi[python]>=0.4.1",
+    "mkdocs-autorefs>=1.4.2",
+    "mkdocs-git-authors-plugin>=0.10.0",
+    "mkdocs-git-revision-date-localized-plugin>=1.4.7",
+    "mkdocs-github-admonitions-plugin>=0.1.1",
+    "mkdocs-material>=9.6.16",
+    "mkdocs-material-extensions>=1.3.1",
+    "mkdocs-minify-plugin>=0.8.0",
+    "mkdocs-open-in-new-tab>=1.0.8",
+    "mkdocs-redirects>=1.2.2",
 ]
 
 [tool.hatch.build.targets.sdist]
