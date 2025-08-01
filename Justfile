@@ -2,16 +2,18 @@
 
 set shell := ["/bin/bash", "-c"]
 
-alias build := build-package
 alias check := run-type-checker
 alias clean := clean-generated-files
 alias demo := run-example
+alias docs := build-documentation
+alias docserver := serve-documentation
 alias download := download-cloc-script
 alias export := export-requirements
 alias format := run-formatter
 alias hooks := run-hooks
 alias lint := run-linter
 alias lock := check-lockfile
+alias package := build-package
 alias python := install-python
 alias setup := set-up-project
 alias sync := sync-dependencies
@@ -21,6 +23,9 @@ alias venv := create-virtual-environment
 
 default:
     just --list
+
+build-documentation:
+    uv run mkdocs build
 
 build-package: download-cloc-script
     uv build
@@ -71,6 +76,9 @@ run-tests:
 
 run-type-checker:
     uv run ty check
+
+serve-documentation:
+    uv run mkdocs serve
 
 set-up-project: install-python create-virtual-environment sync-dependencies install-hooks
 
