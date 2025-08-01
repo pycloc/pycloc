@@ -14,6 +14,10 @@ for name in ("cloc.pl", "cloc.ini"):
     resource = resources / name
     resource.unlink(missing_ok=True)
 
-for name in ("dist", "htmlcov"):
+for name in (".coverage",):
+    file = from_root(name)
+    file.unlink(missing_ok=True)
+
+for name in ("dist", "htmlcov", "site"):
     directory = from_root(name)
     rmtree(directory, ignore_errors=True)
