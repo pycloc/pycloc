@@ -14,8 +14,16 @@ __all__ = ("CLOC",)
 class CLOC:
     __version__ = properties.version
 
-    def __init__(self, workdir: Optional[AnyPath] = None, **flags: FlagValue):
+    def __init__(
+        self,
+        workdir: Optional[AnyPath] = None,
+        encoding: Optional[str] = None,
+        errors: Optional[str] = None,
+        **flags: FlagValue,
+    ):
         self._workdir: Optional[AnyPath] = workdir
+        self._encoding: Optional[str] = encoding
+        self._errors: Optional[str] = errors
         self._flags: Flags = flags
 
     @property
@@ -25,6 +33,22 @@ class CLOC:
     @workdir.setter
     def workdir(self, value: Optional[AnyPath]):
         self._workdir = value
+
+    @property
+    def encoding(self) -> Optional[str]:
+        return self._encoding
+
+    @encoding.setter
+    def encoding(self, value: Optional[str]):
+        self._encoding = value
+
+    @property
+    def errors(self) -> Optional[str]:
+        return self._errors
+
+    @errors.setter
+    def errors(self, value: Optional[str]):
+        self._errors = value
 
     def __delattr__(self, name: str):
         del self._flags[name]
@@ -55,8 +79,8 @@ class CLOC:
                 cwd=(self.workdir or workdir),
                 arguments=[argument, *arguments],
                 flags=(self._flags.copy() | flags).items(),
-                encoding=encoding,
-                errors=errors,
+                encoding=(self.encoding or encoding),
+                errors=(self.errors or errors),
             )
         except CalledProcessError as ex:
             raise CLOCCommandError(
