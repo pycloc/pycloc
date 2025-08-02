@@ -59,7 +59,7 @@ install-hooks:
 install-python:
     uv python install
 
-run-example:
+run-example: download-cloc-script
     uv run example.py
 
 run-formatter: run-linter
@@ -71,7 +71,7 @@ run-hooks:
 run-linter:
     uv run ruff check --fix
 
-run-tests:
+run-tests: download-cloc-script
     uv run pytest -vv
 
 run-type-checker:
