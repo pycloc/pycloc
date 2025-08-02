@@ -10,10 +10,7 @@ cloc = CLOC(
     timeout=30,
     by_file=True,
     json=True,
-    exclude_dir=(
-        ".idea",
-        ".venv",
-    ),
+    exclude_dir=".idea,.venv,htmlcov,site",
 )
 
 output = cloc(".")
