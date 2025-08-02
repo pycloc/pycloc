@@ -1,3 +1,10 @@
+"""
+Core classes used for interfacing with ``cloc``.
+
+Classes:
+    CLOC: Provides a convenient interface to create and execute ``cloc`` commands.
+"""
+
 from subprocess import CalledProcessError
 from typing import Optional
 
@@ -12,7 +19,20 @@ __all__ = ("CLOC",)
 
 
 class CLOC:
+    """
+    Provides a convenient interface to create and execute ``cloc``
+    commands with dynamic flag handling and proper error management.
+    Flags can be set as attributes or passed during initialization and execution.
+
+    Args:
+        workdir: Optional working directory for executing the command.
+        encoding: Optional text encoding for parsing output.
+        errors: Optional error handling strategy for encoding issues.
+        **flags: Initial set of command-line flags that will be applied.
+    """
+
     __version__ = properties.version
+    """Current version of ``cloc``."""
 
     def __init__(
         self,
@@ -71,6 +91,40 @@ class CLOC:
         errors: Optional[str] = None,
         **flags: FlagValue,
     ) -> str:
+        """
+        Execute ``cloc`` command with the specified arguments and flags.
+
+        Args:
+            argument: Required positional argument to pass to the command.
+            *arguments: Additional positional arguments to pass to the command.
+            workdir: Optional working directory for this execution.
+            encoding: Optional text encoding for parsing output.
+            errors: Optional error handling strategy for encoding issues.
+            **flags: Additional command-line flags for this execution only.
+
+        Returns:
+            Output from the ``cloc`` command.
+
+        Note:
+            Warning messages from the output are logged but will not result in a raised exception.
+
+        Raises:
+            CLOCDependencyError: If [Perl](https://www.perl.org) is not available on the system.
+            CLOCCommandError: If the ``cloc`` command fails or returns non-zero exit code.
+
+        Examples:
+            >>> import json
+            >>> from tempfile import NamedTemporaryFile
+            >>> from pycloc import CLOC
+            >>> with NamedTemporaryFile(suffix=".md", mode="w") as buffer:
+            ...     _ = buffer.write("Hello, CLOC!")
+            ...     buffer.flush()
+            ...     cloc = CLOC(json=True)
+            ...     output = cloc(buffer.name)
+            ...     result = json.loads(output)
+            ...     result["Markdown"]["code"]
+            1
+        """
         if not perl():
             raise CLOCDependencyError("Perl is not available!")
         try:
