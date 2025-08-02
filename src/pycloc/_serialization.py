@@ -39,11 +39,7 @@ def serialize(
             )
             quoted = quote(decoded)
             return [f"{flag}={quoted}"]
-        case tuple():
-            values = ",".join(map(str, value))
-            quoted = quote(values)
-            return [f"{flag}={quoted}"]
-        case list() | set():
+        case list() | set() | tuple():
             return [f"{flag}={quote(str(value))}" for value in value]
         case _:
             raise CLOCArgumentTypeError(value)
