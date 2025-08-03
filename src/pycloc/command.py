@@ -36,6 +36,7 @@ class CLOC:
 
     def __init__(
         self,
+        *,
         workdir: Optional[AnyPath] = None,
         encoding: Optional[str] = None,
         errors: Optional[str] = None,
