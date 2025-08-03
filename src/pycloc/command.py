@@ -85,6 +85,7 @@ class CLOC:
     def __call__(
         self,
         argument: AnyPath,
+        /,
         *arguments: AnyPath,
         workdir: Optional[AnyPath] = None,
         encoding: Optional[str] = None,
