@@ -34,13 +34,13 @@ check-lockfile:
     uv lock --check
 
 clean-generated-files:
-    uv run script/clean.py
+    uv run --active --script --quiet script/clean.py
 
 create-virtual-environment:
     uv venv --seed --allow-existing
 
 download-cloc-script:
-    uv run script/download.py
+    uv run --active --script --quiet script/download.py
 
 export-requirements:
     uv export --format requirements-txt \
@@ -60,7 +60,7 @@ install-python:
     uv python install
 
 run-example: download-cloc-script
-    uv run script/example.py
+    uv run --active --script --quiet script/example.py
 
 run-formatter: run-linter
     uv run ruff format
