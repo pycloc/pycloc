@@ -6,9 +6,9 @@ Classes:
 """
 
 from subprocess import CalledProcessError
-from typing import Optional
+from typing import Literal, Optional, overload
 
-from pycloc._aliases import AnyPath, Flags, FlagValue
+from pycloc._aliases import AnyPath, CommandOutput, Flags, FlagValue
 from pycloc._properties import properties
 from pycloc._resources import script
 from pycloc._subprocess import perl, run
@@ -83,29 +83,57 @@ class CLOC:
         else:
             self._flags[name] = value
 
+    @overload
     def __call__(
         self,
         argument: AnyPath,
         /,
         *arguments: AnyPath,
+        asynchronous: Literal[False] = False,
         workdir: Optional[AnyPath] = None,
         encoding: Optional[str] = None,
         errors: Optional[str] = None,
         **flags: FlagValue,
-    ) -> str:
+    ) -> str: ...
+
+    @overload
+    async def __call__(
+        self,
+        argument: AnyPath,
+        /,
+        *arguments: AnyPath,
+        asynchronous: Literal[True] = True,
+        workdir: Optional[AnyPath] = None,
+        encoding: Optional[str] = None,
+        errors: Optional[str] = None,
+        **flags: FlagValue,
+    ) -> str: ...
+
+    def __call__(
+        self,
+        argument: AnyPath,
+        /,
+        *arguments: AnyPath,
+        asynchronous: bool = False,
+        workdir: Optional[AnyPath] = None,
+        encoding: Optional[str] = None,
+        errors: Optional[str] = None,
+        **flags: FlagValue,
+    ) -> CommandOutput:
         """
         Execute ``cloc`` command with the specified arguments and flags.
 
         Args:
             argument: Required positional argument to pass to the command.
             *arguments: Additional positional arguments to pass to the command.
+            asynchronous: Whether to execute the command asynchronously.
             workdir: Optional working directory for this execution.
             encoding: Optional text encoding for parsing output.
             errors: Optional error handling strategy for encoding issues.
             **flags: Additional command-line flags for this execution only.
 
         Returns:
-            Output from the ``cloc`` command.
+            Output from the ``cloc`` command, either as a string or as an ``Awaitable`` string.
 
         Note:
             Warning messages from the output are logged but will not result in a raised exception.
@@ -137,6 +165,7 @@ class CLOC:
                 flags=(self._flags.copy() | flags).items(),
                 encoding=(self.encoding or encoding),
                 errors=(self.errors or errors),
+                asynchronous=asynchronous,
             )
         except CalledProcessError as ex:
             raise CLOCCommandError(
