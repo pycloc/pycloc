@@ -13,11 +13,13 @@ cloc = CLOC(
     exclude_dir=".idea,.venv,htmlcov,site",
 )
 
-output = cloc(".")
-result = json.loads(output)
-pretty = json.dumps(
-    obj=result,
-    indent=4,
-)
 
-print(pretty)
+def main():
+    output = cloc(".")
+    result = json.loads(output)
+    pretty = json.dumps(result, indent=4)
+    print(pretty)
+
+
+if __name__ == "__main__":
+    main()

@@ -60,7 +60,7 @@ install-python:
     uv python install
 
 run-example: download-cloc-script
-    uv run example.py
+    uv run examples/sync.py
 
 run-formatter: run-linter
     uv run ruff format
