@@ -48,7 +48,7 @@ def test_warnings(
     result.stderr = warnings
 
     subprocess = mocker.patch(
-        target="subprocess.run",
+        target="pycloc._subprocess.create_subprocess",
         return_value=result,
     )
     with caplog.at_level(
