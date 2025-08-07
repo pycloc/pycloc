@@ -65,22 +65,28 @@ from pathlib import Path
 
 from pycloc import CLOC
 
-target = Path("directory", "of", "your", "choice")
+workdir = Path("directory", "of", "your", "choice")
 
 cloc = CLOC(
-    workdir=target,
+    workdir=workdir,
     timeout=30,  # (1)!
     json=True,  # (2)!
 )
 
 cloc.max_file_size = 5  # (3)!
-output = cloc(  # (5)!
-    ".", by_file=True,  # (4)!
-)
-result = json.loads(output)
-pretty = json.dumps(obj=result, indent=4)
 
-print(pretty)
+
+def main():
+    output = cloc(  # (5)!
+        ".", by_file=True,  # (4)!
+    )
+    result = json.loads(output)
+    pretty = json.dumps(result, indent=4)
+    print(pretty)
+
+
+if __name__ == "__main__":
+    main()
 ```
 
 1. Configurations can be supplied within the command constructor.
