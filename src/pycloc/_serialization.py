@@ -34,8 +34,8 @@ def serialize(
             return [f"{flag}={quoted}"]
         case bytearray() | bytes():
             decoded = value.decode(
-                encoding=encoding if encoding else "utf-8",
-                errors=errors if errors else "strict",
+                encoding=encoding or "utf-8",
+                errors=errors or "strict",
             )
             quoted = quote(decoded)
             return [f"{flag}={quoted}"]
