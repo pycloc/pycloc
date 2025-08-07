@@ -60,6 +60,16 @@ docs = [
     "mkdocs-redirects>=1.2.2",
 ]
 
+[tool.coverage.report]
+# language=regexp
+exclude_also = [
+    'except PackageNotFoundError:\s*__version__ = "0\.0\.0"',  # Exclude fallback versioning information
+    '@\w+\.setter\s*def \w+\(self, \w+\):\s*self\._?\w+ = \w+',  # Exclude property setters
+    '@property\s*def \w+\(self\):\s*return self\._?\w+',  # Exclude property getters
+    'self\._?\w+ = \w+$',  # Exclude simple assignment statements in setters
+    'return self\._?\w+$',  # Exclude one-line return statements
+]
+
 [tool.hatch.build.targets.sdist]
 artifacts = [
     "cloc.ini",
