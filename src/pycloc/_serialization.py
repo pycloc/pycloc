@@ -41,5 +41,5 @@ def serialize(
             return [f"{flag}={quoted}"]
         case list() | set() | tuple():
             return [f"{flag}={quote(str(value))}" for value in value]
-        case _:
+        case _:  # noinspection PyUnreachableCode
             raise CLOCArgumentTypeError(value)
