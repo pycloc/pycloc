@@ -102,7 +102,7 @@ cache-keys = [
     { file = "pyproject.toml" },
     { git = true },
 ]
-required-version = ">=0.7.0,<0.8.0"
+required-version = ">=0.8.0,<0.9.0"
 
 [tool.uv-dynamic-versioning]
 bump = true
