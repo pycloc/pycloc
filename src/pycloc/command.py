@@ -174,7 +174,10 @@ class CLOC:
                 output=ex.output,
                 stderr=ex.stderr,
             ) from None
-        except FileNotFoundError as ex:
+        except (
+            FileNotFoundError,
+            PermissionError,
+        ) as ex:
             raise CLOCCommandError(
                 cmd=ex.filename,
                 returncode=127,
