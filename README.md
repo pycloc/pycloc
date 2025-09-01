@@ -1,8 +1,8 @@
 # pycloc
 
-<center>
- <img src="docs/assets/images/pycloc.png" alt="pycloc logo" />
-</center>
+<p align="center">
+    <img src="docs/assets/images/pycloc.png" alt="pycloc logo" />
+</p>
 
 Python wrapper for the [`cloc`](https://github.com/AlDanial/cloc) (Count Lines of Code) command-line tool.
 This library provides a convenient, Pythonic interface to the powerful static analysis tool,
