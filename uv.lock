@@ -850,7 +850,7 @@ dev = [
     { name = "pytest-clarity", specifier = ">=1.0.1" },
     { name = "pytest-cov", specifier = ">=6.2.1" },
     { name = "pytest-github-actions-annotate-failures", specifier = ">=0.3.0" },
-    { name = "pytest-lazy-fixtures", specifier = ">=1.3.2" },
+    { name = "pytest-lazy-fixtures", specifier = ">=1.3.4" },
     { name = "pytest-mock", specifier = ">=3.14.1" },
     { name = "questionary", specifier = ">=2.1.0" },
     { name = "requests", specifier = ">=2.32.4" },
@@ -882,7 +882,7 @@ test = [
     { name = "pytest-clarity", specifier = ">=1.0.1" },
     { name = "pytest-cov", specifier = ">=6.2.1" },
     { name = "pytest-github-actions-annotate-failures", specifier = ">=0.3.0" },
-    { name = "pytest-lazy-fixtures", specifier = ">=1.3.2" },
+    { name = "pytest-lazy-fixtures", specifier = ">=1.3.4" },
     { name = "pytest-mock", specifier = ">=3.14.1" },
 ]
 tool = [
@@ -970,14 +970,14 @@ wheels = [
 
 [[package]]
 name = "pytest-lazy-fixtures"
-version = "1.3.2"
+version = "1.3.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pytest" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/95/17/ff51472404b5597c8e983ff16e61101d51e63d3e19d7d3d9ace4c404ff61/pytest_lazy_fixtures-1.3.2.tar.gz", hash = "sha256:76bac6772e97173828d49551695cc6e3927c7c86c65cd19d4cccb0c14a45f821", size = 34114, upload-time = "2025-07-17T22:44:47.086Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/31/75/4be4c0bbf8badc4901ffa0594f723179442b282332646f5c210d1d4f05b9/pytest_lazy_fixtures-1.3.4.tar.gz", hash = "sha256:7dd2c110830897b83f041d3a503cbdda10c98ced6dca7602fc43e2f6017c27ed", size = 34713, upload-time = "2025-08-19T09:45:20.666Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/63/17/24fb2218d850800dfad9c12fc31935900304f2bfefedfd060230a4a684f3/pytest_lazy_fixtures-1.3.2-py3-none-any.whl", hash = "sha256:a2a7096c6a4f71f0160eaa07fe03f93c006505dd7283df075cd26fcc2b654754", size = 8389, upload-time = "2025-07-17T22:44:46.053Z" },
+    { url = "https://files.pythonhosted.org/packages/30/8d/b1143db7ad04d76c5828a79e1e28c87872d39a07e4177485e596e403959c/pytest_lazy_fixtures-1.3.4-py3-none-any.whl", hash = "sha256:3fcb1032f1ffcde367588f4229f7fc6ff64b7a0522c9cd305a08baf39c1c4f5c", size = 8444, upload-time = "2025-08-19T09:45:19.913Z" },
 ]
 
 [[package]]
