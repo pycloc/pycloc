@@ -63,7 +63,9 @@ To include the package in your project, run the following:
 
 ## Quick Start
 
-```py linenums="1" title="example.py"
+The following is a basic usage example of the library:
+
+```python linenums="1" title="example.py"
 import json
 from pathlib import Path
 
@@ -81,9 +83,7 @@ cloc.max_file_size = 5  # (3)!
 
 
 def main():
-    output = cloc(  # (5)!
-        ".", by_file=True,  # (4)!
-    )
+    output = cloc(".", by_file=True)  # (4)!
     result = json.loads(output)
     pretty = json.dumps(result, indent=4)
     print(pretty)
@@ -100,6 +100,12 @@ if __name__ == "__main__":
    is serialized as `--flag-name`, while `False` values are omitted entirely.
 3. Configurations can also be specified through attribute setters.
    Note that specifying configurations this way **will** modify the instance.
-4. Finally, you can pass additional configurations prior to execution.
+4. Runs the command!
+   You can also specify additional configurations prior to execution.
    Note that configurations applied this way **do not** modify the instance.
-5. Invokes the pre-configured command! (this can be done any number of times)
+
+For asynchronous execution, enable the dedicated flag before calling the command:
+
+```python
+await cloc(..., asynchronous=True)
+```
