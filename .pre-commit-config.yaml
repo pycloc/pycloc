@@ -16,7 +16,7 @@ repos:
     - id: trailing-whitespace
       args: [ "--markdown-linebreak-ext=md" ]
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.12.7
+  rev: v0.12.11
   hooks:
     - id: ruff-check
       args: [ "--config", "pyproject.toml", "--exit-non-zero-on-fix", "--fix" ]
@@ -25,7 +25,7 @@ repos:
       args: [ "--config", "pyproject.toml" ]
       files: \.py$
 - repo: https://github.com/astral-sh/uv-pre-commit
-  rev: 0.8.4
+  rev: 0.8.8
   hooks:
     - id: uv-lock
       files: \.toml$
