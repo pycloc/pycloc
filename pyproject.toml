@@ -37,9 +37,9 @@ test = [
     "pytest-mock>=3.14.1",
 ]
 tool = [
-    "pre-commit>=4.2.0",
-    "ruff>=0.12.7",
-    "ty>=0.0.1a16",
+    "pre-commit>=4.3.0",
+    "ruff>=0.12.11",
+    "ty>=0.0.1a19",
 ]
 script = [
     "from-root>=1.3.0",
