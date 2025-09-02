@@ -7,6 +7,10 @@ requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICEN[CS]E.*"]
 dependencies = []
+authors = [
+    { name = "Ozren Dabić", email = "dabic.ozren@gmail.com" },
+    { name = "Stefano Campanella", email = "stefanocamp187@gmail.com" },
+]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
