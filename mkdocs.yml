@@ -1,5 +1,8 @@
 site_name: pycloc
+site_url: "https://pycloc.github.io/pycloc/"
 site_description: Python wrapper for the cloc CLI tool
+site_author: "Ozren Dabić"
+repo_url: "https://github.com/pycloc/pycloc"
 edit_uri_template: "blob/main/docs/{path}"
 markdown_extensions:
   - admonition
@@ -28,6 +31,9 @@ theme:
     - content.action.view
     - content.code.annotate
     - content.code.copy
+  icon:
+    repo: octicons/mark-github-16
+  language: en
   palette:
     - media: "(prefers-color-scheme)"
       toggle:
@@ -43,6 +49,14 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/PyCLOC
+      name: CLOC GitHub Organisation
+    - icon: fontawesome/solid/envelope
+      link: mailto:pycloc.maintainers@gmail.com
+      name: Email the team
 extra_css:
   - css/style.css
 nav:
