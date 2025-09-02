@@ -13,3 +13,8 @@ except PackageNotFoundError:
     __version__ = "0.0.0"
 
 __license__ = "MIT"
+__author__ = "Ozren Dabić"
+__credits__ = (
+    "Stefano Campanella",
+    "Albert Danial",
+)
