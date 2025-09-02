@@ -5,6 +5,7 @@ set shell := ["/bin/bash", "-c"]
 alias check := run-type-checker
 alias clean := clean-generated-files
 alias demo := run-example
+alias deploy := publish-documentation
 alias docs := build-documentation
 alias docserver := serve-documentation
 alias download := download-cloc-script
@@ -58,6 +59,9 @@ install-hooks:
 
 install-python:
     uv python install
+
+publish-documentation:
+    uv run mkdocs gh-deploy --clean --force --no-history
 
 run-example: download-cloc-script
     uv run --active --script --quiet script/example.py
