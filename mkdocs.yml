@@ -1,5 +1,6 @@
 site_name: pycloc
 site_description: Python wrapper for the cloc CLI tool
+edit_uri_template: "blob/main/docs/{path}"
 markdown_extensions:
   - admonition
   - attr_list
@@ -23,6 +24,8 @@ theme:
   name: material
   favicon: assets/images/pycloc.ico
   features:
+    - content.action.edit
+    - content.action.view
     - content.code.annotate
     - content.code.copy
   palette:
