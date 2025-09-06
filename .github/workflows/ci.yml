@@ -1,0 +1,40 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    name: Quality Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up repository
+        uses: actions/checkout@v5
+      - name: Set up `uv`
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: 0.8.8
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - name: Set up `just`
+        uses: extractions/setup-just@v3
+        with:
+          just-version: 1.42.4
+      - name: Set up project
+        run: just setup
+      - name: Run linter
+        run: just lint
+      - name: Run type checker
+        run: just check
+      - name: Run tests
+        run: just test
+      - name: Upload coverage report
+        if: always()
+        run: |
+          if [ -f coverage.md ]; then
+            echo "### Test Coverage" >> "$GITHUB_STEP_SUMMARY"
+            echo >> "$GITHUB_STEP_SUMMARY"
+            cat coverage.md >> "$GITHUB_STEP_SUMMARY"
+          fi
