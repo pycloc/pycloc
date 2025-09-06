@@ -25,6 +25,12 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
 ]
 
+[project.urls]
+Documentation = "https://pycloc.github.io"
+Homepage = "https://github.com/pycloc"
+Repository = "https://github.com/pycloc/pycloc.git"
+Issues = "https://github.com/pycloc/pycloc/issues"
+
 [dependency-groups]
 dev = [
     { include-group = "docs" },
