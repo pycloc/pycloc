@@ -99,6 +99,7 @@ testpaths = ["test"]
 addopts = [
     "--import-mode=importlib",
     "--cov-report=html",
+    "--cov-report=markdown",
     "--cov-report=term-missing",
     "--cov=src",
 ]
