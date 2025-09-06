@@ -14,7 +14,7 @@ for name in ("cloc.pl", "cloc.ini"):
     resource = resources / name
     resource.unlink(missing_ok=True)
 
-for name in (".coverage",):
+for name in (".coverage", "coverage.md"):
     file = from_root(name)
     file.unlink(missing_ok=True)
 
