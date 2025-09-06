@@ -97,10 +97,10 @@ python_functions = ["test_*"]
 pythonpath = ["src"]
 testpaths = ["test"]
 addopts = [
-    "--cov=src",
+    "--import-mode=importlib",
     "--cov-report=html",
     "--cov-report=term-missing",
-    "--import-mode=importlib",
+    "--cov=src",
 ]
 
 [tool.ruff]
