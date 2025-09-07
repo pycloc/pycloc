@@ -10,6 +10,10 @@ jobs:
     name: Quality Checks
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
       - name: Prepare repository
         uses: ./.github/actions/prepare
       - name: Run linter
