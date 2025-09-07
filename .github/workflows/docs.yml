@@ -16,14 +16,5 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - name: Compute cache ID
-        run: echo "MKDOCS_CACHE_ID=$(date --utc '+%V')" >> $GITHUB_ENV
-      - name: Set up cache
-        uses: actions/cache@v4
-        with:
-          key: mkdocs-${{ env.MKDOCS_CACHE_ID }}
-          path: ~/.cache
-          restore-keys: |
-            mkdocs-
       - name: Build and deploy website
         run: just deploy
