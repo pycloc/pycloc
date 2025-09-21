@@ -48,8 +48,8 @@ test = [
 ]
 tool = [
     "pre-commit>=4.3.0",
-    "ruff>=0.13.0",
-    "ty>=0.0.1a20",
+    "ruff>=0.13.1",
+    "ty>=0.0.1a21",
 ]
 script = [
     "from-root>=1.3.0",
