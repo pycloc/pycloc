@@ -851,8 +851,8 @@ dev = [
     { name = "pytest-clarity", specifier = ">=1.0.1" },
     { name = "pytest-cov", specifier = ">=7.0.0" },
     { name = "pytest-github-actions-annotate-failures", specifier = ">=0.3.0" },
-    { name = "pytest-lazy-fixtures", specifier = ">=1.3.4" },
-    { name = "pytest-mock", specifier = ">=3.15.0" },
+    { name = "pytest-lazy-fixtures", specifier = ">=1.4.0" },
+    { name = "pytest-mock", specifier = ">=3.15.1" },
     { name = "questionary", specifier = ">=2.1.1" },
     { name = "requests", specifier = ">=2.32.5" },
     { name = "ruff", specifier = ">=0.13.0" },
@@ -883,8 +883,8 @@ test = [
     { name = "pytest-clarity", specifier = ">=1.0.1" },
     { name = "pytest-cov", specifier = ">=7.0.0" },
     { name = "pytest-github-actions-annotate-failures", specifier = ">=0.3.0" },
-    { name = "pytest-lazy-fixtures", specifier = ">=1.3.4" },
-    { name = "pytest-mock", specifier = ">=3.15.0" },
+    { name = "pytest-lazy-fixtures", specifier = ">=1.4.0" },
+    { name = "pytest-mock", specifier = ">=3.15.1" },
 ]
 tool = [
     { name = "pre-commit", specifier = ">=4.3.0" },
@@ -971,26 +971,26 @@ wheels = [
 
 [[package]]
 name = "pytest-lazy-fixtures"
-version = "1.3.4"
+version = "1.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pytest" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/31/75/4be4c0bbf8badc4901ffa0594f723179442b282332646f5c210d1d4f05b9/pytest_lazy_fixtures-1.3.4.tar.gz", hash = "sha256:7dd2c110830897b83f041d3a503cbdda10c98ced6dca7602fc43e2f6017c27ed", size = 34713, upload-time = "2025-08-19T09:45:20.666Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/75/05/030c4efe596bc31bcb4fefb31f5fcefc8917df99bd745a920763c5e81863/pytest_lazy_fixtures-1.4.0.tar.gz", hash = "sha256:f544b60c96b909b307558a62cc1f28f026f11e9f03d7f583a1dc636de3dbcb10", size = 36188, upload-time = "2025-09-16T18:42:31.797Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/30/8d/b1143db7ad04d76c5828a79e1e28c87872d39a07e4177485e596e403959c/pytest_lazy_fixtures-1.3.4-py3-none-any.whl", hash = "sha256:3fcb1032f1ffcde367588f4229f7fc6ff64b7a0522c9cd305a08baf39c1c4f5c", size = 8444, upload-time = "2025-08-19T09:45:19.913Z" },
+    { url = "https://files.pythonhosted.org/packages/60/a0/a07399bd4842282fe3c2da264746069d5216640bc0940b7a359e2c950aa6/pytest_lazy_fixtures-1.4.0-py3-none-any.whl", hash = "sha256:c5db4506fa0ade5887189d1a18857fec4c329b4f49043fef6732c67c9553389a", size = 9680, upload-time = "2025-09-16T18:42:30.534Z" },
 ]
 
 [[package]]
 name = "pytest-mock"
-version = "3.15.0"
+version = "3.15.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pytest" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/61/99/3323ee5c16b3637b4d941c362182d3e749c11e400bea31018c42219f3a98/pytest_mock-3.15.0.tar.gz", hash = "sha256:ab896bd190316b9d5d87b277569dfcdf718b2d049a2ccff5f7aca279c002a1cf", size = 33838, upload-time = "2025-09-04T20:57:48.679Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/68/14/eb014d26be205d38ad5ad20d9a80f7d201472e08167f0bb4361e251084a9/pytest_mock-3.15.1.tar.gz", hash = "sha256:1849a238f6f396da19762269de72cb1814ab44416fa73a8686deac10b0d87a0f", size = 34036, upload-time = "2025-09-16T16:37:27.081Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2b/b3/7fefc43fb706380144bcd293cc6e446e6f637ddfa8b83f48d1734156b529/pytest_mock-3.15.0-py3-none-any.whl", hash = "sha256:ef2219485fb1bd256b00e7ad7466ce26729b30eadfc7cbcdb4fa9a92ca68db6f", size = 10050, upload-time = "2025-09-04T20:57:47.274Z" },
+    { url = "https://files.pythonhosted.org/packages/5a/cc/06253936f4a7fa2e0f48dfe6d851d9c56df896a9ab09ac019d70b760619c/pytest_mock-3.15.1-py3-none-any.whl", hash = "sha256:0a25e2eb88fe5168d535041d09a4529a188176ae608a6d249ee65abc0949630d", size = 10095, upload-time = "2025-09-16T16:37:25.734Z" },
 ]
 
 [[package]]
