@@ -48,7 +48,7 @@ test = [
 ]
 tool = [
     "pre-commit>=4.3.0",
-    "ruff>=0.13.1",
+    "ruff>=0.13.2",
     "ty>=0.0.1a21",
 ]
 script = [
