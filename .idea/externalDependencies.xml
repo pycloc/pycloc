@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalDependencies">
+    <plugin id="Git4Idea" />
+    <plugin id="Pythonid" />
+    <plugin id="com.jetbrains.sh" />
+    <plugin id="com.koxudaxi.ruff" min-version="0.0.50" />
+    <plugin id="mobi.hsz.idea.gitignore" />
+    <plugin id="org.editorconfig.editorconfigjetbrains" />
+    <plugin id="org.intellij.plugins.markdown" />
+    <plugin id="org.jetbrains.plugins.github" />
+    <plugin id="org.jetbrains.plugins.terminal" />
+    <plugin id="org.jetbrains.plugins.yaml" />
+    <plugin id="org.mvnsearch.plugins.justPlugin" min-version="0.6.0" />
+  </component>
+</project>
