@@ -27,7 +27,7 @@ def token() -> Optional[str]:
     return f"Bearer {value}" if (value := env.get("GITHUB_TOKEN")) else None
 
 
-def headers() -> Dict[str, str]:
+def headers() -> Dict[str, Optional[str]]:
     return {
         "Accept": "application/vnd.github+json",
         "Authorization": token(),
