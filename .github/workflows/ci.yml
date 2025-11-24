@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.ref_name }}
       - name: Prepare repository
