@@ -1,12 +1,10 @@
 from pathlib import Path
-from typing import Any, List, TypeVar
+from typing import Any, List
 
 from pytest import mark, param, raises
 
 # noinspection PyProtectedMember
 from pycloc._serialization import serialize
-
-T = TypeVar("T")
 
 
 @mark.parametrize(
@@ -45,7 +43,7 @@ T = TypeVar("T")
         param(Path("/var/log"), ["--name=/var/log"], id="path,multiple"),
     ],
 )
-def test_serialization(value: T, expected: List[str]):
+def test_serialization(value: Any, expected: List[str]):
     assert expected == serialize(
         name="name",
         value=value,
