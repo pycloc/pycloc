@@ -1,6 +1,5 @@
 from logging import WARNING
 from textwrap import dedent
-from typing import cast
 
 from pytest import LogCaptureFixture, raises
 from pytest_mock import MockFixture
@@ -28,10 +27,9 @@ def test_not_found():
     executable = "unknown"
     with raises(FileNotFoundError) as error:
         run(executable=executable)
-    ex = cast(FileNotFoundError, error.value)
-    assert ex.errno == 2
-    assert ex.filename == executable
-    assert ex.strerror == "No such file or directory"
+    assert error.value.errno == 2
+    assert error.value.filename == executable
+    assert error.value.strerror == "No such file or directory"
 
 
 def test_warnings(

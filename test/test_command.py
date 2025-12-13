@@ -1,6 +1,5 @@
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import cast
 
 from pytest import fixture, mark, param, raises
 from pytest_lazy_fixtures import lf as lazy_fixture
@@ -62,5 +61,4 @@ def test_script_issues(
         cloc = CLOC()
         cloc(tmp_path)
     script.assert_called_once()
-    ex = cast(CLOCCommandError, error.value)
-    assert ex.returncode == 127
+    assert error.value.returncode == 127
