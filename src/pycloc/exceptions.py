@@ -11,7 +11,7 @@ Classes:
 """
 
 from subprocess import CalledProcessError
-from typing import Type, TypeVar
+from typing import Generic, Type, TypeVar
 
 __all__ = (
     "CLOCArgumentNameError",
@@ -69,7 +69,7 @@ class CLOCArgumentNameError(CLOCArgumentError, ValueError):
         return self._name
 
 
-class CLOCArgumentTypeError(CLOCArgumentError, TypeError):
+class CLOCArgumentTypeError(Generic[T], CLOCArgumentError, TypeError):
     """
     Raised when a value of an unsupported type is specified for a flag.
 
