@@ -25,7 +25,7 @@ repos:
       args: [ "--config", "pyproject.toml" ]
       files: \.py$
 - repo: https://github.com/astral-sh/uv-pre-commit
-  rev: 0.8.11
+  rev: 0.9.9
   hooks:
     - id: uv-lock
       files: \.toml$
