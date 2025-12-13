@@ -39,7 +39,7 @@ dev = [
     { include-group = "script" },
 ]
 test = [
-    "pytest>=8.4.2",
+    "pytest>=9.0.2",
     "pytest-clarity>=1.0.1",
     "pytest-cov>=7.0.0",
     "pytest-github-actions-annotate-failures>=0.3.0",
@@ -91,7 +91,7 @@ artifacts = [
 fallback-version = "0.0.0"
 source = "uv-dynamic-versioning"
 
-[tool.pytest.ini_options]
+[tool.pytest]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
 pythonpath = ["src"]
