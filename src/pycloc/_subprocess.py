@@ -4,7 +4,7 @@ from logging import getLogger as get_logger
 from shutil import which
 from subprocess import PIPE, CalledProcessError
 from subprocess import run as create_subprocess
-from typing import Iterable, Optional, Sequence, Tuple
+from typing import Iterable, Literal, Optional, Sequence, Tuple, overload
 
 from pycloc._aliases import AnyPath, CommandOutput, Flag
 from pycloc._serialization import serialize
@@ -19,8 +19,8 @@ def perl() -> Optional[AnyPath]:
 
 
 async def run_async(
-    args: Sequence[str],
-    cwd: Optional[str] = None,
+    args: Sequence[AnyPath],
+    cwd: Optional[AnyPath] = None,
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
 ) -> str:
@@ -56,8 +56,8 @@ async def run_async(
 
 
 def run_sync(
-    args: Sequence[str],
-    cwd: Optional[str] = None,
+    args: Sequence[AnyPath],
+    cwd: Optional[AnyPath] = None,
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
 ) -> str:
@@ -76,6 +76,30 @@ def run_sync(
             logger.warning(line)
 
     return process.stdout
+
+
+@overload
+def run(
+    executable: AnyPath,
+    arguments: Iterable[AnyPath] = empty,
+    flags: Iterable[Flag] = empty,
+    cwd: Optional[AnyPath] = None,
+    encoding: Optional[str] = None,
+    errors: Optional[str] = None,
+    asynchronous: Literal[False] = False,
+) -> str: ...
+
+
+@overload
+async def run(
+    executable: AnyPath,
+    arguments: Iterable[AnyPath] = empty,
+    flags: Iterable[Flag] = empty,
+    cwd: Optional[AnyPath] = None,
+    encoding: Optional[str] = None,
+    errors: Optional[str] = None,
+    asynchronous: Literal[True] = True,
+) -> str: ...
 
 
 def run(
