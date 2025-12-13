@@ -6,7 +6,7 @@ runs:
     - name: Set up `uv`
       uses: astral-sh/setup-uv@v6
       with:
-        version: 0.8.8
+        version: 0.9.9
         enable-cache: true
         cache-dependency-glob: uv.lock
     - name: Set up `just`
