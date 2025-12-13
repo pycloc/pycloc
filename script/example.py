@@ -18,13 +18,17 @@ uv = which("uv")
 
 
 def main():
+    if not uv:
+        raise FileNotFoundError("uv: command not found")
     question = questionary.select(
         message="Which example would you like to run?",
         choices=("sync", "async"),
     )
-    example = question.ask() + ".py"
-    # https://stackoverflow.com/a/6743663/17173324
-    execlp(uv, uv, "run", examples / example)
+    if answer := question.ask():
+        # https://stackoverflow.com/a/6743663/17173324
+        execlp(uv, uv, "run", examples / f"{answer}.py")
+    else:
+        exit(1)
 
 
 if __name__ == "__main__":
