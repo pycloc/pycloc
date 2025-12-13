@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
-        with:
-          ref: ${{ github.ref_name }}
       - name: Prepare repository
         uses: ./.github/actions/prepare
       - name: Configure `git` credentials
