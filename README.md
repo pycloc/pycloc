@@ -3,7 +3,7 @@
 [![PyPI](https://img.shields.io/pypi/v/pycloc)](https://pypi.org/project/pycloc/)
 
 <p align="center">
-    <img src="docs/assets/images/pycloc.png" alt="pycloc logo" />
+    <img src="https://pycloc.github.io/pycloc/assets/images/pycloc.png" alt="pycloc logo" />
 </p>
 
 Python wrapper for the [`cloc`](https://github.com/AlDanial/cloc) (Count Lines of Code) command-line tool.
