@@ -1,5 +1,7 @@
 # pycloc
 
+[![PyPI](https://img.shields.io/pypi/v/pycloc)](https://pypi.org/project/pycloc/)
+
 <p align="center">
     <img src="docs/assets/images/pycloc.png" alt="pycloc logo" />
 </p>

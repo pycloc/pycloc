@@ -1,0 +1,36 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    environment:
+      name: "publish"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+      - name: Prepare repository
+        uses: ./.github/actions/prepare
+      - name: Build package
+        run: just package
+      - name: Publish package
+        run: just publish
+      - name: Upload build to release
+        uses: softprops/action-gh-release@v2
+        with:   
+          tag_name: ${{ github.ref_name }} 
+          name: Release ${{ github.ref_name }}
+          files: |
+            dist/*.whl
+            dist/*.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

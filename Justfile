@@ -16,6 +16,7 @@ alias lint := run-linter
 alias lock := check-lockfile
 alias package := build-package
 alias python := install-python
+alias publish := publish-package
 alias setup := set-up-project
 alias sync := sync-dependencies
 alias test := run-tests
@@ -62,6 +63,9 @@ install-python:
 
 publish-documentation:
     uv run mkdocs gh-deploy --clean --force --no-history
+
+publish-package: 
+    uv publish --verbose
 
 run-example: download-cloc-script
     uv run --active --script --quiet script/example.py

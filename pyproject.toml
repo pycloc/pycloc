@@ -82,6 +82,14 @@ exclude_also = [
 ]
 
 [tool.hatch.build.targets.sdist]
+sources = ["src"]
+artifacts = [
+    "cloc.ini",
+    "cloc.pl",
+]
+
+[tool.hatch.build.targets.wheel]
+sources = ["src"]
 artifacts = [
     "cloc.ini",
     "cloc.pl",
