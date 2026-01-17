@@ -1,9 +1,14 @@
 # pycloc
 
-[![PyPI](https://img.shields.io/pypi/v/pycloc)](https://pypi.org/project/pycloc/)
-
 <p align="center">
     <img src="https://pycloc.github.io/pycloc/assets/images/pycloc.png" alt="pycloc logo" />
+</p>
+
+<p align="center">
+    <a href="https://github.com/pycloc/pycloc/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/pycloc/pycloc.svg?color=blue"></a>
+    <a href="https://pycloc.github.io/pycloc/"><img alt="Documentation" src="https://img.shields.io/website?label=documentation&url=https%3A%2F%2Fpycloc.github.io%2Fpycloc&down_color=red&down_message=offline&up_color=green&up_message=online"></a>
+    <a href="https://github.com/pycloc/pycloc/releases"><img alt="GitHub release" src="https://img.shields.io/github/release/pycloc/pycloc.svg"></a>
+    <a href="https://pypi.org/project/pycloc/"><img alt="PyPI" src="https://img.shields.io/badge/pypi-pycloc-green"></a>
 </p>
 
 Python wrapper for the [`cloc`](https://github.com/AlDanial/cloc) (Count Lines of Code) command-line tool.
