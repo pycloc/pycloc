@@ -64,7 +64,7 @@ install-python:
 publish-documentation:
     uv run mkdocs gh-deploy --clean --force --no-history
 
-publish-package: 
+publish-package:
     uv publish --verbose
 
 run-example: download-cloc-script

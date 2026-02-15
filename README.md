@@ -46,5 +46,5 @@ The Python source code in this project is licensed under the MIT License.
 
 > [!IMPORTANT]
 > This project bundles the `cloc` command-line program, which is a separate
-> work licensed under the GNU General Public License version 2.0 (GPL-2.0). 
+> work licensed under the GNU General Public License version 2.0 (GPL-2.0).
 > `cloc` is not part of this project’s source code and remains licensed under GPL-2.0. See [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md) and [LICENSE-GPL-2.0](LICENSE-GPL-2.0) for details.
