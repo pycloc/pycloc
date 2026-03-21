@@ -4,15 +4,14 @@ runs:
   using: composite
   steps:
     - name: Set up `uv`
-      uses: astral-sh/setup-uv@v6
+      uses: astral-sh/setup-uv@v7
       with:
-        version: 0.9.9
         enable-cache: true
         cache-dependency-glob: uv.lock
     - name: Set up `just`
       uses: extractions/setup-just@v3
       with:
-        just-version: 1.42.4
+        just-version: 1.46.0
     - name: Set up project
       shell: bash
       run: just setup
